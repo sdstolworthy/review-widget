@@ -2,6 +2,9 @@ import * as React from "react";
 import { DIReview } from "../createApp";
 import ReviewBox from "./reviewBox";
 import Rating from "react-rating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 
 interface IProps {
   reviews: Array<DIReview>;
@@ -22,6 +25,10 @@ export default function Reviews(props: IProps) {
   const filteredReviews = props.reviews.filter(
     r => typeof r.rating_max === "number" && typeof r.rating === "number"
   );
+  const avgRating =
+    (filteredReviews.reduce((a, b) => a + b.rating / b.rating_max, 0) /
+      filteredReviews.length) *
+    5;
 
   return (
     <div ref={containerDiv} style={{ width: "100%" }}>
@@ -37,16 +44,22 @@ export default function Reviews(props: IProps) {
         <div style={{ display: "inline-block" }}>
           <Rating
             readonly={true}
-            initialRating={
-              (filteredReviews.reduce(
-                (a, b) => a + b.rating / b.rating_max,
-                0
-              ) /
-                filteredReviews.length) *
-              5
-            }
-            stop={5}
             start={0}
+            stop={5}
+            initialRating={avgRating}
+            emptySymbol={
+              <FontAwesomeIcon
+                style={{ fontSize: "1.5rem" }}
+                icon={faStar}
+                color="grey"
+              />
+            }
+            fullSymbol={
+              <FontAwesomeIcon
+                style={{ fontSize: "1.5rem" }}
+                icon={solidStar}
+              />
+            }
           />
         </div>
         <h2
@@ -63,6 +76,7 @@ export default function Reviews(props: IProps) {
         style={{
           columnCount: Math.min(3, Math.floor(width / 320)),
           gridGap: "1em",
+          gridRowGap: "6em",
           padding: "1em"
         }}
       >

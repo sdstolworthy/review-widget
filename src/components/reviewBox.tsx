@@ -2,6 +2,9 @@ import React from "react";
 import Rating from "react-rating";
 import { DIReview } from "../createApp";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   review: DIReview;
@@ -13,12 +16,14 @@ export default function ReviewBox({ review }: Props) {
       key={review.text}
       id="review-grid"
       style={{
-        boxShadow: "0 0 3px 0px #AAAAAA",
+        boxShadow: "0 0 3px 0px #DEDEDE",
+        borderRadius: "3px",
         padding: 15,
-        width: "100%",
+        // width: "100%",
         display: "inline-block",
-        boxSizing: "border-box",
-        marginBottom: "1em"
+        marginBottom: "1em",
+        border: "1px #DEDEDE solid",
+        boxSizing: "border-box"
       }}
     >
       <Rating
@@ -26,9 +31,10 @@ export default function ReviewBox({ review }: Props) {
         start={0}
         stop={review.rating_max}
         initialRating={review.rating}
-        // emptySymbol={<FontAwesomeIcon icon={faStar} color="grey" />}
-        // fullSymbol={<FontAwesomeIcon icon={faStar} />}
+        emptySymbol={<FontAwesomeIcon icon={faStar} color="grey" />}
+        fullSymbol={<FontAwesomeIcon icon={solidStar} />}
       />
+
       <p style={{ color: "#AAAAAA", fontSize: "0.8rem" }}>
         {moment(review.created_at).format("MM/DD/YYYY")}
       </p>
