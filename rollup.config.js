@@ -35,7 +35,8 @@ export default {
           "PropTypes",
           "createElement",
           "useState",
-          "useEffect"
+          "useEffect",
+          "useRef"
         ],
         "node_modules/react-dom/index.js": ["render"]
       }
