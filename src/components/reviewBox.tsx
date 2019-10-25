@@ -19,7 +19,7 @@ export default function ReviewBox({ review }: Props) {
         boxShadow: "0 0 3px 0px #DEDEDE",
         borderRadius: "3px",
         padding: 15,
-        // width: "100%",
+        width: "100%",
         display: "inline-block",
         marginBottom: "1em",
         border: "1px #DEDEDE solid",
