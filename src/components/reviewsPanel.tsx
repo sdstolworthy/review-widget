@@ -49,8 +49,8 @@ export default function Reviews(props: IProps) {
         <h2
           style={{
             display: "inline",
-            textAlign: "center",
-            verticalAlign: "middle"
+            padding: 0,
+            margin: 0
           }}
         >
           &nbsp;&nbsp;{props.reviews.length} reviews
