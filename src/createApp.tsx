@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import Reviews from "./components/reviewPanel";
+import Reviews from "./components/reviewsPanel";
 import * as React from "react";
 
 declare global {

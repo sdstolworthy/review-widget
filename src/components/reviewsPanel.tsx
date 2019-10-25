@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DIReview } from "../createApp";
-import ReviewBox from "./review";
+import ReviewBox from "./reviewBox";
 
 interface IProps {
   reviews: Array<DIReview>;

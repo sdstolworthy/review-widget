@@ -1,9 +1,9 @@
 import React from "react";
 import faker from "faker";
-import Reviews from "./reviewPanel";
+import Reviews from "./reviewsPanel";
 import { DIReview } from "../createApp";
 import moment from "moment";
-import ReviewBox from "./review";
+import ReviewBox from "./reviewBox";
 
 export default {
   title: "Reviews"
