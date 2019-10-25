@@ -12,6 +12,10 @@ export default {
 function getReview() {
   const r: DIReview = {
     analytics_id: "",
+    reviewer_name:
+      Math.floor(Math.random() * 2) % 2 === 0
+        ? `${faker.name.firstName()} ${faker.name.lastName()[0]}.`
+        : "",
     created_at: moment().toISOString(),
     updated_at: moment().toISOString(),
     product: "",

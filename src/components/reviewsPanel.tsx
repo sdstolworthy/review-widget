@@ -26,7 +26,10 @@ export default function Reviews(props: IProps) {
     r => typeof r.rating_max === "number" && typeof r.rating === "number"
   );
   const avgRating =
-    (filteredReviews.reduce((a, b) => a + b.rating / b.rating_max, 0) /
+    (filteredReviews.reduce(
+      (a, b) => (b.rating && b.rating_max ? a + b.rating / b.rating_max : a),
+      0
+    ) /
       filteredReviews.length) *
     5;
 

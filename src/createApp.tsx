@@ -22,12 +22,13 @@ export interface DIReview {
   analytics_id: string;
   created_at: string;
   product: string;
-  rating: number;
-  rating_max: number;
+  rating?: number;
+  rating_max?: number;
   text: string;
   updated_at: string;
   vendor: string;
-  image_url: string;
+  image_url?: string;
+  reviewer_name?: string;
 }
 
 interface ICreateApp {

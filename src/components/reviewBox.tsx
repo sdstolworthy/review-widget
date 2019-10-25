@@ -26,6 +26,7 @@ export default function ReviewBox({ review }: Props) {
         boxSizing: "border-box"
       }}
     >
+      <h3 style={{ margin: "0 0 0.3em 0" }}>{review.reviewer_name}</h3>
       <Rating
         readonly={true}
         start={0}
@@ -34,10 +35,12 @@ export default function ReviewBox({ review }: Props) {
         emptySymbol={<FontAwesomeIcon icon={faStar} color="grey" />}
         fullSymbol={<FontAwesomeIcon icon={solidStar} />}
       />
-      <img
-        style={{ objectFit: "cover", width: "100%", margin: "1em 0" }}
-        src={review.image_url}
-      />
+      {review.image_url ? (
+        <img
+          style={{ objectFit: "cover", width: "100%", margin: "1em 0" }}
+          src={review.image_url}
+        />
+      ) : null}
 
       <p style={{ color: "#AAAAAA", fontSize: "0.8rem" }}>
         {moment(review.created_at).format("MM/DD/YYYY")}
