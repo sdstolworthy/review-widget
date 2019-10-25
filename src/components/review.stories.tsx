@@ -18,7 +18,11 @@ function getReview() {
     rating: Math.floor(Math.random() * 6),
     rating_max: 5,
     text: faker.lorem.paragraph(),
-    vendor: ""
+    vendor: "",
+    image_url:
+      Math.floor(Math.random() * 4) % 3 === 0
+        ? `https://via.placeholder.com/700x400`
+        : ``
   };
   return r;
 }

@@ -34,6 +34,10 @@ export default function ReviewBox({ review }: Props) {
         emptySymbol={<FontAwesomeIcon icon={faStar} color="grey" />}
         fullSymbol={<FontAwesomeIcon icon={solidStar} />}
       />
+      <img
+        style={{ objectFit: "cover", width: "100%", margin: "1em 0" }}
+        src={review.image_url}
+      />
 
       <p style={{ color: "#AAAAAA", fontSize: "0.8rem" }}>
         {moment(review.created_at).format("MM/DD/YYYY")}

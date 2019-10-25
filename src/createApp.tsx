@@ -27,6 +27,7 @@ export interface DIReview {
   text: string;
   updated_at: string;
   vendor: string;
+  image_url: string;
 }
 
 interface ICreateApp {
