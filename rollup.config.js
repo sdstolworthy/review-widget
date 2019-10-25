@@ -41,6 +41,6 @@ export default {
     replace({
       "process.env.NODE_ENV": JSON.stringify("production")
     }),
-    uglify({ compress: { drop_console: true, drop_debugger: true } })
+    // uglify({ compress: { drop_console: true, drop_debugger: true } })
   ]
 };
