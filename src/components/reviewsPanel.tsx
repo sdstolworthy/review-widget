@@ -53,12 +53,12 @@ export default function Reviews(props: IProps) {
             margin: 0
           }}
         >
-          &nbsp;&nbsp;{props.reviews.length} reviews
+          &nbsp;&nbsp;{props.reviews.length} verified reviews
         </h2>
       </div>
       <div
         style={{
-          columnCount: Math.floor(width / 320),
+          columnCount: Math.min(3, Math.floor(width / 320)),
           gridGap: "1em",
           padding: "1em"
         }}
