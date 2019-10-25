@@ -8,10 +8,13 @@ interface IProps {
 }
 
 export default function Reviews(props: IProps) {
+  const containerDiv = React.useRef(null);
   const [width, setWidth] = React.useState(window.innerWidth);
   React.useEffect(() => {
     function handleResize() {
-      setWidth(window.innerWidth);
+      if (containerDiv.current !== null) {
+        setWidth((containerDiv.current as any).clientWidth);
+      }
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -21,7 +24,7 @@ export default function Reviews(props: IProps) {
   );
 
   return (
-    <div style={{ width: "100%" }}>
+    <div ref={containerDiv} style={{ width: "100%" }}>
       <div
         style={{
           padding: "1em",
