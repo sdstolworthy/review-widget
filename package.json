@@ -4,14 +4,21 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "serve": "yarn build && serve ./build | lt -s di-static-server -p 5000",
+    "watch": "nodemon --watch src -e ts,tsx --exec 'npm run build'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^16.9.10",
+    "@types/react-dom": "^16.9.2",
+    "nodemon": "^1.19.4",
     "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-rating": "^2.0.0",
     "rollup": "^1.25.2",
+    "rollup-plugin-replace": "^2.2.0",
     "typescript": "^3.6.4"
   },
   "devDependencies": {
