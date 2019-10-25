@@ -3,7 +3,7 @@ import commonjs from "rollup-plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
 import resolve from "rollup-plugin-node-resolve";
 import replace from "rollup-plugin-replace";
-// import { uglify } from "rollup-plugin-uglify";
+import { uglify } from "rollup-plugin-uglify";
 
 import pkg from "./package.json";
 
@@ -44,6 +44,6 @@ export default {
     replace({
       "process.env.NODE_ENV": JSON.stringify("production")
     }),
-    // uglify({ compress: { drop_console: true, drop_debugger: true } })
+    uglify({ compress: { drop_console: true, drop_debugger: true } })
   ]
 };
