@@ -18,9 +18,9 @@ export default function Reviews(props: IProps) {
   return (
     <div
       style={{
-        columnCount: Math.floor(width / 250),
+        columnCount: Math.floor(width / 320),
         gridGap: "1em",
-        paddingTop: "1em"
+        padding: "1em",
       }}
     >
       {props.reviews.map(review => {
