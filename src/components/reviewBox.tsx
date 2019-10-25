@@ -15,7 +15,7 @@ export default function ReviewBox({ review }: Props) {
       style={{
         boxShadow: "0 0 3px 0px #AAAAAA",
         padding: 15,
-        width: "calc(100%-30px)",
+        width: "100%",
         display: "inline-block",
         boxSizing: "border-box",
         marginBottom: "1em"
