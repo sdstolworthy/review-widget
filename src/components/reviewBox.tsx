@@ -3,17 +3,24 @@ import Rating from "react-rating";
 import { DIReview } from "../createApp";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faFlag } from "@fortawesome/free-regular-svg-icons";
+import {
+  faStar as solidStar,
+  faFlag as solidFlag
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   review: DIReview;
+  handleFlag?: (hashedText: string) => void;
 }
 
-export default function ReviewBox({ review }: Props) {
+export default function ReviewBox({ review, handleFlag }: Props) {
+  const [isClicked, setIsClicked] = React.useState(false);
+  const handleClickFlag = () => {
+    setIsClicked(!isClicked);
+  };
   return (
     <div
-      key={review.text}
       id="review-grid"
       style={{
         boxShadow: "0 0 3px 0px #DEDEDE",
@@ -26,6 +33,22 @@ export default function ReviewBox({ review }: Props) {
         boxSizing: "border-box"
       }}
     >
+      <div
+        style={{
+          cursor: "pointer",
+          clear: "both",
+          float: "right",
+          display: "inline-block"
+        }}
+        title="Report this review"
+        onMouseDown={handleClickFlag}
+        onMouseLeave={() => setIsClicked(false)}
+        onMouseUp={() =>
+          handleFlag && handleFlag(btoa(review.text + review.created_at))
+        }
+      >
+        <FontAwesomeIcon icon={isClicked ? solidFlag : faFlag} />
+      </div>
       <h3 style={{ margin: "0 0 0.3em 0" }}>{review.reviewer_name}</h3>
       <Rating
         readonly={true}
@@ -35,6 +58,7 @@ export default function ReviewBox({ review }: Props) {
         emptySymbol={<FontAwesomeIcon icon={faStar} color="grey" />}
         fullSymbol={<FontAwesomeIcon icon={solidStar} />}
       />
+
       {review.image_url ? (
         <img
           style={{ objectFit: "cover", width: "100%", margin: "1em 0" }}

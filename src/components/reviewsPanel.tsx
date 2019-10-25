@@ -13,6 +13,7 @@ interface IProps {
 export default function Reviews(props: IProps) {
   const containerDiv = React.useRef(null);
   const [width, setWidth] = React.useState(window.innerWidth);
+  const [reviews, setReviews] = React.useState(props.reviews);
   React.useEffect(() => {
     function handleResize() {
       if (containerDiv.current !== null) {
@@ -32,6 +33,17 @@ export default function Reviews(props: IProps) {
     ) /
       filteredReviews.length) *
     5;
+
+  const onFlagReview = (hashedReview: string) => {
+    const deleteIndex = reviews.findIndex(
+      r => hashedReview === btoa(r.text + r.created_at)
+    );
+    if (deleteIndex !== null) {
+      const newReviews = Object.assign([], reviews);
+      newReviews.splice(deleteIndex, 1);
+      setReviews(newReviews);
+    }
+  };
 
   return (
     <div ref={containerDiv} style={{ width: "100%" }}>
@@ -83,8 +95,14 @@ export default function Reviews(props: IProps) {
           padding: "1em"
         }}
       >
-        {props.reviews.map(review => {
-          return <ReviewBox review={review} />;
+        {reviews.map(review => {
+          return (
+            <ReviewBox
+              key={btoa(review.text + review.created_at)}
+              handleFlag={onFlagReview}
+              review={review}
+            />
+          );
         })}
       </div>
     </div>
