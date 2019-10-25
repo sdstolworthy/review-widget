@@ -33,22 +33,24 @@ export default function ReviewBox({ review, handleFlag }: Props) {
         boxSizing: "border-box"
       }}
     >
-      <div
-        style={{
-          cursor: "pointer",
-          clear: "both",
-          float: "right",
-          display: "inline-block"
-        }}
-        title="Report this review"
-        onMouseDown={handleClickFlag}
-        onMouseLeave={() => setIsClicked(false)}
-        onMouseUp={() =>
-          handleFlag && handleFlag(btoa(review.text + review.created_at))
-        }
-      >
-        <FontAwesomeIcon icon={isClicked ? solidFlag : faFlag} />
-      </div>
+      {handleFlag ? (
+        <div
+          style={{
+            cursor: "pointer",
+            clear: "both",
+            float: "right",
+            display: "inline-block"
+          }}
+          title="Report this review"
+          onMouseDown={handleClickFlag}
+          onMouseLeave={() => setIsClicked(false)}
+          onMouseUp={() =>
+            handleFlag && handleFlag(btoa(review.text + review.created_at))
+          }
+        >
+          <FontAwesomeIcon icon={isClicked ? solidFlag : faFlag} />
+        </div>
+      ) : null}
       <h3 style={{ margin: "0 0 0.3em 0" }}>{review.reviewer_name}</h3>
       <Rating
         readonly={true}

@@ -99,7 +99,7 @@ export default function Reviews(props: IProps) {
           return (
             <ReviewBox
               key={btoa(review.text + review.created_at)}
-              handleFlag={onFlagReview}
+              // handleFlag={onFlagReview}
               review={review}
             />
           );
