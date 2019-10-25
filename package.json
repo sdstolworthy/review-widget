@@ -6,7 +6,9 @@
   "scripts": {
     "build": "rollup -c",
     "serve": "yarn build && serve ./build | lt -s di-static-server -p 5000",
-    "watch": "nodemon --watch src -e ts,tsx --exec 'npm run build'"
+    "watch": "nodemon --watch src -e ts,tsx --exec 'npm run build'",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "ISC",
@@ -15,9 +17,11 @@
     "@fortawesome/free-regular-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
+    "@types/faker": "^4.1.6",
     "@types/moment": "^2.13.0",
     "@types/react": "^16.9.10",
     "@types/react-dom": "^16.9.2",
+    "faker": "^4.1.0",
     "moment": "^2.24.0",
     "nodemon": "^1.19.4",
     "react": "^16.11.0",
@@ -28,7 +32,17 @@
     "typescript": "^3.6.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@storybook/addon-actions": "^5.2.5",
+    "@storybook/addon-info": "^5.2.5",
+    "@storybook/addon-links": "^5.2.5",
+    "@storybook/addons": "^5.2.5",
+    "@storybook/react": "^5.2.5",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
     "localtunnel": "^2.0.0",
+    "react-docgen-typescript-loader": "^3.3.0",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
