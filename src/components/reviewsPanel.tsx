@@ -7,8 +7,22 @@ interface IProps {
 }
 
 export default function Reviews(props: IProps) {
+  const [width, setWidth] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
   return (
-    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <div
+      style={{
+        columnCount: Math.floor(width / 250),
+        gridGap: "1em",
+        paddingTop: "1em"
+      }}
+    >
       {props.reviews.map(review => {
         return <ReviewBox review={review} />;
       })}

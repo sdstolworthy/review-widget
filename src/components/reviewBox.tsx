@@ -10,12 +10,15 @@ interface Props {
 export default function ReviewBox({ review }: Props) {
   return (
     <div
+      key={review.text}
+      id="review-grid"
       style={{
         boxShadow: "0 0 3px 0px #AAAAAA",
         padding: 15,
-        margin: 20,
-        minHeight: 100,
-        minWidth: 200
+        width: "calc(100%-30px)",
+        display: "inline-block",
+        boxSizing: "border-box",
+        marginBottom: "1em"
       }}
     >
       <Rating
