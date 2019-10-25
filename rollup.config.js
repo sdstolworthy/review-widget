@@ -33,7 +33,9 @@ export default {
           "Children",
           "Component",
           "PropTypes",
-          "createElement"
+          "createElement",
+          "useState",
+          "useEffect"
         ],
         "node_modules/react-dom/index.js": ["render"]
       }
