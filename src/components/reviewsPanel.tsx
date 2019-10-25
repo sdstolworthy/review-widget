@@ -16,6 +16,10 @@ export default function Reviews(props: IProps) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   });
+  const filteredReviews = props.reviews.filter(
+    r => typeof r.rating_max === "number" && typeof r.rating === "number"
+  );
+
   return (
     <div style={{ width: "100%" }}>
       <div
@@ -31,10 +35,11 @@ export default function Reviews(props: IProps) {
           <Rating
             readonly={true}
             initialRating={
-              (props.reviews
-                .filter(r => typeof r.rating_max === "number" && r.rating)
-                .reduce((a, b) => a + b.rating / b.rating_max, 0) /
-                props.reviews.length) *
+              (filteredReviews.reduce(
+                (a, b) => a + b.rating / b.rating_max,
+                0
+              ) /
+                filteredReviews.length) *
               5
             }
             stop={5}
