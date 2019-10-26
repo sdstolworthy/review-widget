@@ -92,9 +92,9 @@ export default function Reviews(props: IProps) {
           }}
         >
           {isLoading ? (
-            <span>&nbsp;&nbsp;{reviews.length} verified reviews</span>
-          ) : (
             "Loading reviews"
+          ) : (
+            <span>&nbsp;&nbsp;{reviews.length} verified reviews</span>
           )}
         </h2>
       </div>
