@@ -56,7 +56,7 @@ export default function Reviews(props: IProps) {
           alignItems: "center"
         }}
       >
-        <div style={{ display: "inline-block" }}>
+        <div style={{ display: "inline-block", minWidth: "max-content" }}>
           <Rating
             readonly={true}
             start={0}
