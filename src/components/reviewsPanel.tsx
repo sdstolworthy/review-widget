@@ -7,13 +7,13 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 
 interface IProps {
-  reviews: Array<DIReview>;
+  getReviews: () => Promise<Array<DIReview>>;
 }
 
 export default function Reviews(props: IProps) {
   const containerDiv = React.useRef(null);
   const [width, setWidth] = React.useState(window.innerWidth);
-  const [reviews] = React.useState(props.reviews);
+  const [reviews, setReviews] = React.useState<Array<DIReview>>([]);
   React.useEffect(() => {
     function handleResize() {
       if (containerDiv.current !== null) {
@@ -21,9 +21,12 @@ export default function Reviews(props: IProps) {
       }
     }
     window.addEventListener("resize", handleResize);
+
+    props.getReviews().then(reviews => setReviews(reviews));
+
     return () => window.removeEventListener("resize", handleResize);
-  });
-  const filteredReviews = props.reviews.filter(
+  }, []);
+  const filteredReviews = reviews.filter(
     r => typeof r.rating_max === "number" && typeof r.rating === "number"
   );
   const avgRating =

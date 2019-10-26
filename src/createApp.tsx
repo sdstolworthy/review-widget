@@ -34,7 +34,8 @@ export interface DIReview {
 interface ICreateApp {
   shopName: string;
   product: { id: string | number };
-  reviews: Array<DIReview>;
+  getReviews: () => Promise<Array<DIReview>>;
+  // reviews: Array<DIReview>;
 }
 
 export default async function createApp({ reviews }: ICreateApp) {
