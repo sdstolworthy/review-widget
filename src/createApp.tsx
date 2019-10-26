@@ -33,12 +33,10 @@ export interface DIReview {
 
 interface ICreateApp {
   shopName: string;
-  product: { id: string | number };
   getReviews: () => Promise<Array<DIReview>>;
-  // reviews: Array<DIReview>;
 }
 
-export default async function createApp({ reviews }: ICreateApp) {
+export default async function createApp({ getReviews }: ICreateApp) {
   let el = document.getElementById("di-reviews");
   if (!el) {
     el = document.createElement("div");
@@ -48,5 +46,5 @@ export default async function createApp({ reviews }: ICreateApp) {
       mainEls[0].append(el);
     }
   }
-  ReactDOM.render(<Reviews reviews={reviews} />, el);
+  ReactDOM.render(<Reviews getReviews={getReviews} />, el);
 }

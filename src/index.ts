@@ -6,25 +6,32 @@ import createApp, { DIReview } from "./createApp";
   if (!Shopify || !jQuery) {
     return;
   }
+
   const regexTest = /^\/products\/(.*$)/g;
   const pathName = window.location.pathname;
   if (pathName.match(regexTest)) {
     const matches = matchAll(pathName, regexTest);
     const productHandle = matches.next().value[1];
-    if (productHandle) {
-      try {
-        const { product: shopifyProduct } = await jQuery.getJSON(productHandle);
-        const product = await jQuery.get(
-          `/apps/data_intel_reviews/products/${shopifyProduct.id}`
-        );
-        const reviews: Array<DIReview> = await jQuery.get(
-          `/apps/data_intel_reviews/products/${product.id}/reviews`
-        );
-        createApp({ shopName: Shopify.shop, product: product, reviews });
-      } catch (e) {
-        console.error('Something went wrong initializing data intel')
+    const getReviews = async () => {
+      if (productHandle) {
+        try {
+          const { product: shopifyProduct } = await jQuery.getJSON(productHandle);
+          const product = await jQuery.get(
+            `/apps/data_intel_reviews/products/${shopifyProduct.id}`
+          );
+          const reviews: Array<DIReview> = await jQuery.get(
+            `/apps/data_intel_reviews/products/${product.id}/reviews`
+          );
+
+          return reviews
+        } catch (e) {
+          console.error('Something went wrong initializing data intel')
+        }
       }
+      return []
     }
+    createApp({ shopName: Shopify.shop, getReviews });
+
   }
 })(window.Shopify, window.jQuery)
 
