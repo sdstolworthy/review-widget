@@ -14,6 +14,7 @@ export default function Reviews(props: IProps) {
   const containerDiv = React.useRef(null);
   const [width, setWidth] = React.useState(window.innerWidth);
   const [reviews, setReviews] = React.useState<Array<DIReview>>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   React.useEffect(() => {
     function handleResize() {
       if (containerDiv.current !== null) {
@@ -22,7 +23,10 @@ export default function Reviews(props: IProps) {
     }
     window.addEventListener("resize", handleResize);
 
-    props.getReviews().then(reviews => setReviews(reviews));
+    props.getReviews().then(reviews => {
+      setReviews(reviews);
+      setIsLoading(false);
+    });
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -87,7 +91,11 @@ export default function Reviews(props: IProps) {
             margin: 0
           }}
         >
-          &nbsp;&nbsp;{props.reviews.length} verified reviews
+          {isLoading ? (
+            <span>&nbsp;&nbsp;{reviews.length} verified reviews</span>
+          ) : (
+            "Loading reviews"
+          )}
         </h2>
       </div>
       <div
