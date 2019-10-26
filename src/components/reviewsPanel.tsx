@@ -64,25 +64,27 @@ export default function Reviews(props: IProps) {
         }}
       >
         <div style={{ display: "inline-block", minWidth: "max-content" }}>
-          <Rating
-            readonly={true}
-            start={0}
-            stop={5}
-            initialRating={avgRating}
-            emptySymbol={
-              <FontAwesomeIcon
-                style={{ fontSize: "1.5rem" }}
-                icon={faStar}
-                color="grey"
-              />
-            }
-            fullSymbol={
-              <FontAwesomeIcon
-                style={{ fontSize: "1.5rem" }}
-                icon={solidStar}
-              />
-            }
-          />
+          {isLoading ? null : (
+            <Rating
+              readonly={true}
+              start={0}
+              stop={5}
+              initialRating={avgRating}
+              emptySymbol={
+                <FontAwesomeIcon
+                  style={{ fontSize: "1.5rem" }}
+                  icon={faStar}
+                  color="grey"
+                />
+              }
+              fullSymbol={
+                <FontAwesomeIcon
+                  style={{ fontSize: "1.5rem" }}
+                  icon={solidStar}
+                />
+              }
+            />
+          )}
         </div>
         <h2
           style={{
